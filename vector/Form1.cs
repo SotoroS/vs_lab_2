@@ -59,48 +59,48 @@ namespace vector
 
                 Vector result = a + b;
 
-                textBoxVectorResX.Text = result.x.ToString();
-                textBoxVectorResY.Text = result.y.ToString();
-                textBoxVectorResZ.Text = result.z.ToString();
+                textBoxVectorResX.Text = result.x.ToString("N2");
+                textBoxVectorResY.Text = result.y.ToString("N2");
+                textBoxVectorResZ.Text = result.z.ToString("N2");
 
                 // Вычисление модулей
-                textBoxVectorAModule.Text = a.module.ToString();
-                textBoxVectorBModule.Text = b.module.ToString();
-                textBoxVectorResModule.Text = result.module.ToString();
+                textBoxVectorAModule.Text = a.module.ToString("N2");
+                textBoxVectorBModule.Text = b.module.ToString("N2");
+                textBoxVectorResModule.Text = result.module.ToString("N2");
 
                 // Проекция в декартовую систему координат
                 DecartCoordsSystem decartA = new DecartCoordsSystem(a);
                 DecartCoordsSystem decartB = new DecartCoordsSystem(b);
                 DecartCoordsSystem decartRes = new DecartCoordsSystem(result);
 
-                textBoxVectorAI.Text = decartA.i.ToString();
-                textBoxVectorAJ.Text = decartA.j.ToString();
-                textBoxVectorAK.Text = decartA.k.ToString();
+                textBoxVectorAI.Text = decartA.i.ToString("N2");
+                textBoxVectorAJ.Text = decartA.j.ToString("N2");
+                textBoxVectorAK.Text = decartA.k.ToString("N2");
 
-                textBoxVectorBI.Text = decartB.i.ToString();
-                textBoxVectorBJ.Text = decartB.j.ToString();
-                textBoxVectorBK.Text = decartB.k.ToString();
+                textBoxVectorBI.Text = decartB.i.ToString("N2");
+                textBoxVectorBJ.Text = decartB.j.ToString("N2");
+                textBoxVectorBK.Text = decartB.k.ToString("N2");
 
-                textBoxVectorResI.Text = decartRes.i.ToString();
-                textBoxVectorResJ.Text = decartRes.j.ToString();
-                textBoxVectorResK.Text = decartRes.k.ToString();
+                textBoxVectorResI.Text = decartRes.i.ToString("N2");
+                textBoxVectorResJ.Text = decartRes.j.ToString("N2");
+                textBoxVectorResK.Text = decartRes.k.ToString("N2");
 
                 // Проекция в цилиндрическую систему координат
                 CyrCoordsSystem cylA = new CyrCoordsSystem(a);
                 CyrCoordsSystem cylB = new CyrCoordsSystem(b);
                 CyrCoordsSystem cylRes = new CyrCoordsSystem(result);
 
-                textBoxVectorACylR.Text = cylA.r.ToString();
-                textBoxVectorACylF.Text = cylA.f.ToString();
-                textBoxVectorACylZ.Text = cylA.z.ToString();
+                textBoxVectorACylR.Text = cylA.r.ToString("N2");
+                textBoxVectorACylF.Text = cylA.f.ToString("N2");
+                textBoxVectorACylZ.Text = cylA.z.ToString("N2");
 
-                textBoxVectorBCylR.Text = cylB.r.ToString();
-                textBoxVectorBCylF.Text = cylB.f.ToString();
-                textBoxVectorBCylZ.Text = cylB.z.ToString();
+                textBoxVectorBCylR.Text = cylB.r.ToString("N2");
+                textBoxVectorBCylF.Text = cylB.f.ToString("N2");
+                textBoxVectorBCylZ.Text = cylB.z.ToString("N2");
 
-                textBoxVectorResCylR.Text = cylRes.r.ToString();
-                textBoxVectorResCylF.Text = cylRes.f.ToString();
-                textBoxVectorResCylZ.Text = cylRes.z.ToString();
+                textBoxVectorResCylR.Text = cylRes.r.ToString("N2");
+                textBoxVectorResCylF.Text = cylRes.f.ToString("N2");
+                textBoxVectorResCylZ.Text = cylRes.z.ToString("N2");
             }
             else if (radioButtonDiff.Checked)   // Вычитание
             {
@@ -118,48 +118,48 @@ namespace vector
 
                 Vector result = a - b;
 
-                textBoxVectorResX.Text = result.x.ToString();
-                textBoxVectorResY.Text = result.y.ToString();
-                textBoxVectorResZ.Text = result.z.ToString();
+                textBoxVectorResX.Text = result.x.ToString("N2");
+                textBoxVectorResY.Text = result.y.ToString("N2");
+                textBoxVectorResZ.Text = result.z.ToString("N2");
 
                 // Вычисление модулей
-                textBoxVectorAModule.Text = a.module.ToString();
-                textBoxVectorBModule.Text = b.module.ToString();
-                textBoxVectorResModule.Text = result.module.ToString();
+                textBoxVectorAModule.Text = a.module.ToString("N2");
+                textBoxVectorBModule.Text = b.module.ToString("N2");
+                textBoxVectorResModule.Text = result.module.ToString("N2");
 
                 // Проекция в декартовую систему координат
                 DecartCoordsSystem decartA = new DecartCoordsSystem(a);
                 DecartCoordsSystem decartB = new DecartCoordsSystem(b);
                 DecartCoordsSystem decartRes = new DecartCoordsSystem(result);
 
-                textBoxVectorAI.Text = decartA.i.ToString();
-                textBoxVectorAJ.Text = decartA.j.ToString();
-                textBoxVectorAK.Text = decartA.k.ToString();
+                textBoxVectorAI.Text = decartA.i.ToString("N2");
+                textBoxVectorAJ.Text = decartA.j.ToString("N2");
+                textBoxVectorAK.Text = decartA.k.ToString("N2");
 
-                textBoxVectorBI.Text = decartB.i.ToString();
-                textBoxVectorBJ.Text = decartB.j.ToString();
-                textBoxVectorBK.Text = decartB.k.ToString();
+                textBoxVectorBI.Text = decartB.i.ToString("N2");
+                textBoxVectorBJ.Text = decartB.j.ToString("N2");
+                textBoxVectorBK.Text = decartB.k.ToString("N2");
 
-                textBoxVectorResI.Text = decartRes.i.ToString();
-                textBoxVectorResJ.Text = decartRes.j.ToString();
-                textBoxVectorResK.Text = decartRes.k.ToString();
+                textBoxVectorResI.Text = decartRes.i.ToString("N2");
+                textBoxVectorResJ.Text = decartRes.j.ToString("N2");
+                textBoxVectorResK.Text = decartRes.k.ToString("N2");
 
                 // Проекция в цилиндрическую систему координат
                 CyrCoordsSystem cylA = new CyrCoordsSystem(a);
                 CyrCoordsSystem cylB = new CyrCoordsSystem(b);
                 CyrCoordsSystem cylRes = new CyrCoordsSystem(result);
 
-                textBoxVectorACylR.Text = cylA.r.ToString();
-                textBoxVectorACylF.Text = cylA.f.ToString();
-                textBoxVectorACylZ.Text = cylA.z.ToString();
+                textBoxVectorACylR.Text = cylA.r.ToString("N2");
+                textBoxVectorACylF.Text = cylA.f.ToString("N2");
+                textBoxVectorACylZ.Text = cylA.z.ToString("N2");
 
-                textBoxVectorBCylR.Text = cylB.r.ToString();
-                textBoxVectorBCylF.Text = cylB.f.ToString();
-                textBoxVectorBCylZ.Text = cylB.z.ToString();
+                textBoxVectorBCylR.Text = cylB.r.ToString("N2");
+                textBoxVectorBCylF.Text = cylB.f.ToString("N2");
+                textBoxVectorBCylZ.Text = cylB.z.ToString("N2");
 
-                textBoxVectorResCylR.Text = cylRes.r.ToString();
-                textBoxVectorResCylF.Text = cylRes.f.ToString();
-                textBoxVectorResCylZ.Text = cylRes.z.ToString();
+                textBoxVectorResCylR.Text = cylRes.r.ToString("N2");
+                textBoxVectorResCylF.Text = cylRes.f.ToString("N2");
+                textBoxVectorResCylZ.Text = cylRes.z.ToString("N2");
             }
             else if (radioButtonMulti.Checked)  // Умножение
             {
@@ -173,37 +173,37 @@ namespace vector
 
                 Vector result = a * b;
 
-                textBoxVectorResX.Text = result.x.ToString();
-                textBoxVectorResY.Text = result.y.ToString();
-                textBoxVectorResZ.Text = result.z.ToString();
+                textBoxVectorResX.Text = result.x.ToString("N2");
+                textBoxVectorResY.Text = result.y.ToString("N2");
+                textBoxVectorResZ.Text = result.z.ToString("N2");
 
                 // Вычисление модулей
-                textBoxVectorAModule.Text = a.module.ToString();
-                textBoxVectorResModule.Text = result.module.ToString();
+                textBoxVectorAModule.Text = a.module.ToString("N2");
+                textBoxVectorResModule.Text = result.module.ToString("N2");
 
                 // Проекция в декартовую систему координат
                 DecartCoordsSystem decartA = new DecartCoordsSystem(a);
                 DecartCoordsSystem decartRes = new DecartCoordsSystem(result);
 
-                textBoxVectorAI.Text = decartA.i.ToString();
-                textBoxVectorAJ.Text = decartA.j.ToString();
-                textBoxVectorAK.Text = decartA.k.ToString();
+                textBoxVectorAI.Text = decartA.i.ToString("N2");
+                textBoxVectorAJ.Text = decartA.j.ToString("N2");
+                textBoxVectorAK.Text = decartA.k.ToString("N2");
 
-                textBoxVectorResI.Text = decartRes.i.ToString();
-                textBoxVectorResJ.Text = decartRes.j.ToString();
-                textBoxVectorResK.Text = decartRes.k.ToString();
+                textBoxVectorResI.Text = decartRes.i.ToString("N2");
+                textBoxVectorResJ.Text = decartRes.j.ToString("N2");
+                textBoxVectorResK.Text = decartRes.k.ToString("N2");
 
                 // Проекция в цилиндрическую систему координат
                 CyrCoordsSystem cylA = new CyrCoordsSystem(a);
                 CyrCoordsSystem cylRes = new CyrCoordsSystem(result);
 
-                textBoxVectorACylR.Text = cylA.r.ToString();
-                textBoxVectorACylF.Text = cylA.f.ToString();
-                textBoxVectorACylZ.Text = cylA.z.ToString();
+                textBoxVectorACylR.Text = cylA.r.ToString("N2");
+                textBoxVectorACylF.Text = cylA.f.ToString("N2");
+                textBoxVectorACylZ.Text = cylA.z.ToString("N2");
 
-                textBoxVectorResCylR.Text = cylRes.r.ToString();
-                textBoxVectorResCylF.Text = cylRes.f.ToString();
-                textBoxVectorResCylZ.Text = cylRes.z.ToString();
+                textBoxVectorResCylR.Text = cylRes.r.ToString("N2");
+                textBoxVectorResCylF.Text = cylRes.f.ToString("N2");
+                textBoxVectorResCylZ.Text = cylRes.z.ToString("N2");
             }
         }
 
