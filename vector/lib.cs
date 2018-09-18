@@ -35,13 +35,13 @@ namespace lib
         // Перегрузка оператора сложения векторов
         public static Vector operator +(Vector a, Vector b)
         {
-            return new Vector(a.x + a.x, a.y + a.y, a.z + a.z);
+            return new Vector(a.x + b.x, a.y + b.y, a.z + b.z);
         }
 
         // Перегрузка оператора разности векторов
         public static Vector operator -(Vector a, Vector b)
         {
-            return new Vector(a.x - a.x, a.y - a.y, a.z - a.z);
+            return new Vector(a.x - b.x, a.y - b.y, a.z - b.z);
         }
 
         // Перегрузка оператора умножения вектора на скаляр(величину)
@@ -57,9 +57,9 @@ namespace lib
         }
 
         // Проекция вектора в цилиндрической системе координат
-        public static implicit operator CircleCoordsSystem(Vector vector)
+        public static implicit operator CyrCoordsSystem(Vector vector)
         {
-            return new CircleCoordsSystem(vector);
+            return new CyrCoordsSystem(vector);
         }
 
     }
@@ -86,21 +86,21 @@ namespace lib
     }
 
     // Цилиндрическая система координат
-    public class CircleCoordsSystem
+    public class CyrCoordsSystem
     {
-        double p, f, z;
+        public double r, f, z;
 
-        public CircleCoordsSystem(double p, double f, double z)
+        public CyrCoordsSystem(double p, double f, double z)
         {
-            this.p = p;
+            this.r = p;
             this.f = f;
             this.z = z;
         }
 
         // Проекция вектора в цилиндрической системе координат
-        public CircleCoordsSystem(Vector vector)
+        public CyrCoordsSystem(Vector vector)
         {
-            this.p = Math.Sqrt((vector.x * vector.x) + (vector.y * vector.y));
+            this.r = Math.Sqrt((vector.x * vector.x) + (vector.y * vector.y));
             this.f = Math.Atan(vector.y / vector.x);
             this.z = vector.x;
         }
