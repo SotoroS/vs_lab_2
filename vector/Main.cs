@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-
-using lib;
+using vector.lib;
 
 namespace vector
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
-        public Form1()
+        public Main()
         {
             InitializeComponent();
         }
@@ -27,17 +26,14 @@ namespace vector
         {
             if (((RadioButton)sender).Checked)
             {
-                groupBoxVectorB.Visible = false;
-                groupBoxNumber.Visible = true;
-                groupBoxNumber.BringToFront();
+                groupBoxVectorB.Enabled = false;
+                textBoxNumber.Enabled = true;
             }
             else
             {
-                groupBoxNumber.Visible = false;
-                groupBoxVectorB.Visible = true;
-                groupBoxVectorB.BringToFront();
+                groupBoxVectorB.Enabled = true;
+                textBoxNumber.Enabled = false;
             }
-
         }
 
         private void buttonCalc_Click(object sender, EventArgs e)
@@ -217,6 +213,74 @@ namespace vector
             {
                 textBox.Text = "0";
             }
+        }
+
+        /// <summary>
+        /// Добавление вектора A в список векторов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonVectorAAdd_Click(object sender, EventArgs e)
+        {
+            listBoxVectors.Items.Add(new Vector(Convert.ToDouble(textBoxVectorAX.Text), Convert.ToDouble(textBoxVectorAY.Text), Convert.ToDouble(textBoxVectorAZ.Text)).ToString());
+        }
+
+        /// <summary>
+        /// Добавление вектора B в список векторов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonVectorBAdd_Click(object sender, EventArgs e)
+        {
+            listBoxVectors.Items.Add(new Vector(Convert.ToDouble(textBoxVectorBX.Text), Convert.ToDouble(textBoxVectorBY.Text), Convert.ToDouble(textBoxVectorBZ.Text)).ToString());
+        }
+
+        /// <summary>
+        /// Добавление вектора Res в список векторов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonVectorResAdd_Click(object sender, EventArgs e)
+        {
+            listBoxVectors.Items.Add(new Vector(Convert.ToDouble(textBoxVectorResX.Text), Convert.ToDouble(textBoxVectorResY.Text), Convert.ToDouble(textBoxVectorResZ.Text)).ToString());
+        }
+
+        /// <summary>
+        /// Получение вектора A из списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonVectorAGet_Click(object sender, EventArgs e)
+        {
+            string[] value = listBoxVectors.GetItemText(listBoxVectors.SelectedItem).Split(';');
+
+            textBoxVectorAX.Text = value[0];
+            textBoxVectorAY.Text = value[1];
+            textBoxVectorAZ.Text = value[2];
+        }
+
+        /// <summary>
+        /// Получение вектора B из списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonVectorBGet_Click(object sender, EventArgs e)
+        {
+            string[] value = listBoxVectors.GetItemText(listBoxVectors.SelectedItem).Split(';');
+
+            textBoxVectorBX.Text = value[0];
+            textBoxVectorBY.Text = value[1];
+            textBoxVectorBZ.Text = value[2];
+        }
+
+        /// <summary>
+        /// Удаление вектора из списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            listBoxVectors.Items.Remove(listBoxVectors.SelectedItem);
         }
     }
 }

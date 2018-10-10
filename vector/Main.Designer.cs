@@ -1,6 +1,6 @@
 ﻿namespace vector
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.groupBoxVectorA = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBoxVectorACylF = new System.Windows.Forms.TextBox();
@@ -102,8 +103,15 @@
             this.label29 = new System.Windows.Forms.Label();
             this.textBoxVectorResX = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.groupBoxNumber = new System.Windows.Forms.GroupBox();
             this.textBoxNumber = new System.Windows.Forms.TextBox();
+            this.buttonVectorAAdd = new System.Windows.Forms.Button();
+            this.buttonVectorAGet = new System.Windows.Forms.Button();
+            this.buttonVectorResAdd = new System.Windows.Forms.Button();
+            this.buttonVectorBGet = new System.Windows.Forms.Button();
+            this.buttonVectorBAdd = new System.Windows.Forms.Button();
+            this.groupBoxVectors = new System.Windows.Forms.GroupBox();
+            this.listBoxVectors = new System.Windows.Forms.ListBox();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.groupBoxVectorA.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -114,11 +122,13 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.groupBoxNumber.SuspendLayout();
+            this.groupBoxVectors.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxVectorA
             // 
+            this.groupBoxVectorA.Controls.Add(this.buttonVectorAGet);
+            this.groupBoxVectorA.Controls.Add(this.buttonVectorAAdd);
             this.groupBoxVectorA.Controls.Add(this.groupBox3);
             this.groupBoxVectorA.Controls.Add(this.textBoxVectorAZ);
             this.groupBoxVectorA.Controls.Add(this.textBoxVectorAY);
@@ -131,7 +141,7 @@
             this.groupBoxVectorA.Controls.Add(this.label1);
             this.groupBoxVectorA.Location = new System.Drawing.Point(12, 12);
             this.groupBoxVectorA.Name = "groupBoxVectorA";
-            this.groupBoxVectorA.Size = new System.Drawing.Size(237, 192);
+            this.groupBoxVectorA.Size = new System.Drawing.Size(264, 192);
             this.groupBoxVectorA.TabIndex = 0;
             this.groupBoxVectorA.TabStop = false;
             this.groupBoxVectorA.Text = "Вектор a";
@@ -353,7 +363,7 @@
             // 
             this.radioButtonAdd.AutoSize = true;
             this.radioButtonAdd.Checked = true;
-            this.radioButtonAdd.Location = new System.Drawing.Point(76, 65);
+            this.radioButtonAdd.Location = new System.Drawing.Point(11, 25);
             this.radioButtonAdd.Name = "radioButtonAdd";
             this.radioButtonAdd.Size = new System.Drawing.Size(76, 17);
             this.radioButtonAdd.TabIndex = 3;
@@ -364,7 +374,7 @@
             // radioButtonDiff
             // 
             this.radioButtonDiff.AutoSize = true;
-            this.radioButtonDiff.Location = new System.Drawing.Point(76, 87);
+            this.radioButtonDiff.Location = new System.Drawing.Point(11, 47);
             this.radioButtonDiff.Name = "radioButtonDiff";
             this.radioButtonDiff.Size = new System.Drawing.Size(73, 17);
             this.radioButtonDiff.TabIndex = 4;
@@ -374,7 +384,7 @@
             // radioButtonMulti
             // 
             this.radioButtonMulti.AutoSize = true;
-            this.radioButtonMulti.Location = new System.Drawing.Point(76, 110);
+            this.radioButtonMulti.Location = new System.Drawing.Point(11, 70);
             this.radioButtonMulti.Name = "radioButtonMulti";
             this.radioButtonMulti.Size = new System.Drawing.Size(85, 17);
             this.radioButtonMulti.TabIndex = 5;
@@ -384,22 +394,23 @@
             // 
             // groupBoxOperation
             // 
+            this.groupBoxOperation.Controls.Add(this.textBoxNumber);
             this.groupBoxOperation.Controls.Add(this.buttonCalc);
             this.groupBoxOperation.Controls.Add(this.radioButtonDiff);
             this.groupBoxOperation.Controls.Add(this.radioButtonAdd);
             this.groupBoxOperation.Controls.Add(this.radioButtonMulti);
-            this.groupBoxOperation.Location = new System.Drawing.Point(262, 12);
+            this.groupBoxOperation.Location = new System.Drawing.Point(282, 210);
             this.groupBoxOperation.Name = "groupBoxOperation";
-            this.groupBoxOperation.Size = new System.Drawing.Size(236, 192);
+            this.groupBoxOperation.Size = new System.Drawing.Size(263, 134);
             this.groupBoxOperation.TabIndex = 9;
             this.groupBoxOperation.TabStop = false;
             this.groupBoxOperation.Text = "Тип операции";
             // 
             // buttonCalc
             // 
-            this.buttonCalc.Location = new System.Drawing.Point(81, 143);
+            this.buttonCalc.Location = new System.Drawing.Point(11, 102);
             this.buttonCalc.Name = "buttonCalc";
-            this.buttonCalc.Size = new System.Drawing.Size(75, 23);
+            this.buttonCalc.Size = new System.Drawing.Size(245, 23);
             this.buttonCalc.TabIndex = 22;
             this.buttonCalc.Text = "Посчитать";
             this.buttonCalc.UseVisualStyleBackColor = true;
@@ -407,7 +418,9 @@
             // 
             // groupBoxVectorB
             // 
+            this.groupBoxVectorB.Controls.Add(this.buttonVectorBGet);
             this.groupBoxVectorB.Controls.Add(this.groupBox4);
+            this.groupBoxVectorB.Controls.Add(this.buttonVectorBAdd);
             this.groupBoxVectorB.Controls.Add(this.textBoxVectorBZ);
             this.groupBoxVectorB.Controls.Add(this.textBoxVectorBY);
             this.groupBoxVectorB.Controls.Add(this.groupBox5);
@@ -419,7 +432,7 @@
             this.groupBoxVectorB.Controls.Add(this.label20);
             this.groupBoxVectorB.Location = new System.Drawing.Point(12, 210);
             this.groupBoxVectorB.Name = "groupBoxVectorB";
-            this.groupBoxVectorB.Size = new System.Drawing.Size(237, 192);
+            this.groupBoxVectorB.Size = new System.Drawing.Size(264, 192);
             this.groupBoxVectorB.TabIndex = 20;
             this.groupBoxVectorB.TabStop = false;
             this.groupBoxVectorB.Text = "Вектор b";
@@ -639,6 +652,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.buttonVectorResAdd);
             this.groupBox6.Controls.Add(this.groupBox7);
             this.groupBox6.Controls.Add(this.textBoxVectorResZ);
             this.groupBox6.Controls.Add(this.textBoxVectorResY);
@@ -649,9 +663,9 @@
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.textBoxVectorResX);
             this.groupBox6.Controls.Add(this.label30);
-            this.groupBox6.Location = new System.Drawing.Point(261, 210);
+            this.groupBox6.Location = new System.Drawing.Point(282, 12);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(237, 192);
+            this.groupBox6.Size = new System.Drawing.Size(263, 192);
             this.groupBox6.TabIndex = 21;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Результат";
@@ -866,37 +880,107 @@
             this.label30.TabIndex = 0;
             this.label30.Text = "x:";
             // 
-            // groupBoxNumber
-            // 
-            this.groupBoxNumber.Controls.Add(this.textBoxNumber);
-            this.groupBoxNumber.Location = new System.Drawing.Point(12, 211);
-            this.groupBoxNumber.Name = "groupBoxNumber";
-            this.groupBoxNumber.Size = new System.Drawing.Size(238, 191);
-            this.groupBoxNumber.TabIndex = 21;
-            this.groupBoxNumber.TabStop = false;
-            this.groupBoxNumber.Text = "Скалярная величина";
-            this.groupBoxNumber.Visible = false;
-            // 
             // textBoxNumber
             // 
-            this.textBoxNumber.Location = new System.Drawing.Point(6, 22);
+            this.textBoxNumber.Enabled = false;
+            this.textBoxNumber.Location = new System.Drawing.Point(102, 70);
             this.textBoxNumber.Name = "textBoxNumber";
-            this.textBoxNumber.Size = new System.Drawing.Size(224, 20);
+            this.textBoxNumber.Size = new System.Drawing.Size(154, 20);
             this.textBoxNumber.TabIndex = 0;
             this.textBoxNumber.Text = "0";
             this.textBoxNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCoord_KeyPress);
             // 
-            // Form1
+            // buttonVectorAAdd
+            // 
+            this.buttonVectorAAdd.Location = new System.Drawing.Point(234, 17);
+            this.buttonVectorAAdd.Name = "buttonVectorAAdd";
+            this.buttonVectorAAdd.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorAAdd.TabIndex = 22;
+            this.buttonVectorAAdd.Text = "→";
+            this.buttonVectorAAdd.UseVisualStyleBackColor = true;
+            this.buttonVectorAAdd.Click += new System.EventHandler(this.buttonVectorAAdd_Click);
+            // 
+            // buttonVectorAGet
+            // 
+            this.buttonVectorAGet.Location = new System.Drawing.Point(234, 47);
+            this.buttonVectorAGet.Name = "buttonVectorAGet";
+            this.buttonVectorAGet.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorAGet.TabIndex = 24;
+            this.buttonVectorAGet.Text = "←";
+            this.buttonVectorAGet.UseVisualStyleBackColor = true;
+            this.buttonVectorAGet.Click += new System.EventHandler(this.buttonVectorAGet_Click);
+            // 
+            // buttonVectorResAdd
+            // 
+            this.buttonVectorResAdd.Location = new System.Drawing.Point(234, 17);
+            this.buttonVectorResAdd.Name = "buttonVectorResAdd";
+            this.buttonVectorResAdd.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorResAdd.TabIndex = 25;
+            this.buttonVectorResAdd.Text = "→";
+            this.buttonVectorResAdd.UseVisualStyleBackColor = true;
+            this.buttonVectorResAdd.Click += new System.EventHandler(this.buttonVectorResAdd_Click);
+            // 
+            // buttonVectorBGet
+            // 
+            this.buttonVectorBGet.Location = new System.Drawing.Point(234, 47);
+            this.buttonVectorBGet.Name = "buttonVectorBGet";
+            this.buttonVectorBGet.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorBGet.TabIndex = 26;
+            this.buttonVectorBGet.Text = "←";
+            this.buttonVectorBGet.UseVisualStyleBackColor = true;
+            this.buttonVectorBGet.Click += new System.EventHandler(this.buttonVectorBGet_Click);
+            // 
+            // buttonVectorBAdd
+            // 
+            this.buttonVectorBAdd.Location = new System.Drawing.Point(234, 17);
+            this.buttonVectorBAdd.Name = "buttonVectorBAdd";
+            this.buttonVectorBAdd.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorBAdd.TabIndex = 25;
+            this.buttonVectorBAdd.Text = "→";
+            this.buttonVectorBAdd.UseVisualStyleBackColor = true;
+            this.buttonVectorBAdd.Click += new System.EventHandler(this.buttonVectorBAdd_Click);
+            // 
+            // groupBoxVectors
+            // 
+            this.groupBoxVectors.Controls.Add(this.buttonDelete);
+            this.groupBoxVectors.Controls.Add(this.listBoxVectors);
+            this.groupBoxVectors.Location = new System.Drawing.Point(551, 12);
+            this.groupBoxVectors.Name = "groupBoxVectors";
+            this.groupBoxVectors.Size = new System.Drawing.Size(221, 390);
+            this.groupBoxVectors.TabIndex = 22;
+            this.groupBoxVectors.TabStop = false;
+            this.groupBoxVectors.Text = "Список векторов";
+            // 
+            // listBoxVectors
+            // 
+            this.listBoxVectors.FormattingEnabled = true;
+            this.listBoxVectors.Location = new System.Drawing.Point(6, 17);
+            this.listBoxVectors.Name = "listBoxVectors";
+            this.listBoxVectors.Size = new System.Drawing.Size(209, 329);
+            this.listBoxVectors.TabIndex = 0;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(6, 357);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(209, 23);
+            this.buttonDelete.TabIndex = 1;
+            this.buttonDelete.Text = "Удалить";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 413);
+            this.ClientSize = new System.Drawing.Size(784, 413);
+            this.Controls.Add(this.groupBoxVectors);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBoxOperation);
             this.Controls.Add(this.groupBoxVectorA);
             this.Controls.Add(this.groupBoxVectorB);
-            this.Controls.Add(this.groupBoxNumber);
-            this.Name = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Main";
             this.Text = "Vector";
             this.groupBoxVectorA.ResumeLayout(false);
             this.groupBoxVectorA.PerformLayout();
@@ -918,8 +1002,7 @@
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.groupBoxNumber.ResumeLayout(false);
-            this.groupBoxNumber.PerformLayout();
+            this.groupBoxVectors.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1000,8 +1083,15 @@
         private System.Windows.Forms.TextBox textBoxVectorResX;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button buttonCalc;
-        private System.Windows.Forms.GroupBox groupBoxNumber;
         private System.Windows.Forms.TextBox textBoxNumber;
+        private System.Windows.Forms.Button buttonVectorAGet;
+        private System.Windows.Forms.Button buttonVectorAAdd;
+        private System.Windows.Forms.Button buttonVectorBGet;
+        private System.Windows.Forms.Button buttonVectorBAdd;
+        private System.Windows.Forms.Button buttonVectorResAdd;
+        private System.Windows.Forms.GroupBox groupBoxVectors;
+        private System.Windows.Forms.ListBox listBoxVectors;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }
 
