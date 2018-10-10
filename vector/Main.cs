@@ -1,17 +1,33 @@
 ﻿using System;
 using System.Windows.Forms;
 using vector.lib;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace vector
 {
     public partial class Main : Form
     {
+        /// <summary>
+        /// Список векторов
+        /// </summary>
+        private List<Vector> vectors = new List<Vector>();
+
+        /// <summary>
+        /// Состояние сортировки ASC || DESC
+        /// </summary>
+        private bool asc = true;
+
         public Main()
         {
             InitializeComponent();
         }
 
-        // Проверка введенных значений в поля формы
+        /// <summary>
+        /// Проверка введенных значений в поля формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxCoord_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -22,6 +38,11 @@ namespace vector
             }
         }
 
+        /// <summary>
+        /// Регулировка доступности полей в зависиомоти от выбранной операции вычисления
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButtonMulti_CheckedChanged(object sender, EventArgs e)
         {
             if (((RadioButton)sender).Checked)
@@ -36,6 +57,11 @@ namespace vector
             }
         }
 
+        /// <summary>
+        /// Dвычисления
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCalc_Click(object sender, EventArgs e)
         {
 
@@ -222,7 +248,8 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorAAdd_Click(object sender, EventArgs e)
         {
-            listBoxVectors.Items.Add(new Vector(Convert.ToDouble(textBoxVectorAX.Text), Convert.ToDouble(textBoxVectorAY.Text), Convert.ToDouble(textBoxVectorAZ.Text)).ToString());
+            vectors.Add(new Vector(Convert.ToDouble(textBoxVectorAX.Text), Convert.ToDouble(textBoxVectorAY.Text), Convert.ToDouble(textBoxVectorAZ.Text)));
+            UpdateListBox();
         }
 
         /// <summary>
@@ -232,7 +259,8 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorBAdd_Click(object sender, EventArgs e)
         {
-            listBoxVectors.Items.Add(new Vector(Convert.ToDouble(textBoxVectorBX.Text), Convert.ToDouble(textBoxVectorBY.Text), Convert.ToDouble(textBoxVectorBZ.Text)).ToString());
+            vectors.Add(new Vector(Convert.ToDouble(textBoxVectorBX.Text), Convert.ToDouble(textBoxVectorBY.Text), Convert.ToDouble(textBoxVectorBZ.Text)));
+            UpdateListBox();
         }
 
         /// <summary>
@@ -242,7 +270,8 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorResAdd_Click(object sender, EventArgs e)
         {
-            listBoxVectors.Items.Add(new Vector(Convert.ToDouble(textBoxVectorResX.Text), Convert.ToDouble(textBoxVectorResY.Text), Convert.ToDouble(textBoxVectorResZ.Text)).ToString());
+            vectors.Add(new Vector(Convert.ToDouble(textBoxVectorResX.Text), Convert.ToDouble(textBoxVectorResY.Text), Convert.ToDouble(textBoxVectorResZ.Text)));
+            UpdateListBox();
         }
 
         /// <summary>
@@ -252,6 +281,8 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorAGet_Click(object sender, EventArgs e)
         {
+            if (listBoxVectors.SelectedIndex < 0) return;
+
             string[] value = listBoxVectors.GetItemText(listBoxVectors.SelectedItem).Split(';');
 
             textBoxVectorAX.Text = value[0];
@@ -266,6 +297,8 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorBGet_Click(object sender, EventArgs e)
         {
+            if (listBoxVectors.SelectedIndex < 0) return;
+
             string[] value = listBoxVectors.GetItemText(listBoxVectors.SelectedItem).Split(';');
 
             textBoxVectorBX.Text = value[0];
@@ -281,6 +314,234 @@ namespace vector
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             listBoxVectors.Items.Remove(listBoxVectors.SelectedItem);
+        }
+
+        private void UpdateListBox()
+        {
+            listBoxVectors.Items.Clear();
+
+            foreach (Vector v in vectors)
+                listBoxVectors.Items.Add(v.x + ";" + v.y + ";" + v.z);
+        }
+
+        private void UpdateListBox(List<Vector> list)
+        {
+            listBoxVectors.Items.Clear();
+
+            foreach (Vector v in list)
+                listBoxVectors.Items.Add(v.x + ";" + v.y + ";" + v.z);
+        }
+
+        /// <summary>
+        /// Сортирвка по возрастанию 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSortAsc_Click(object sender, EventArgs e)
+        {
+            List<Vector> newVectors = new List<Vector>();
+
+            if (!asc) asc = true;
+            
+            IEnumerable<Vector> query = from v in vectors orderby v.x + v.y + v.z ascending select v;
+
+            foreach(Vector v in query) newVectors.Add(v);
+
+            vectors = newVectors;
+
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Сортировка по убыванию
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSortDesc_Click(object sender, EventArgs e)
+        {
+            List<Vector> newVectors = new List<Vector>();
+
+            if (asc) asc = false;
+
+            IEnumerable<Vector> query = from v in vectors orderby v.x + v.y + v.z descending select v;
+
+            foreach (Vector v in query) newVectors.Add(v);
+
+            vectors = newVectors;
+
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Удаление выбранного элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDeleteSelected_Click(object sender, EventArgs e)
+        {
+            if (listBoxVectors.SelectedIndex < 0) return;
+
+            vectors.RemoveAt(listBoxVectors.SelectedIndex);
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Удаление всех элементов списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            vectors.Clear();
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Сортировка по X
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSortByX_Click(object sender, EventArgs e)
+        {
+            List<Vector> newVectors = new List<Vector>();
+
+            IEnumerable<Vector> query;
+
+            if (asc) query = from v in vectors orderby v.x ascending select v;
+            else query = from v in vectors orderby v.x descending select v;
+
+            foreach (Vector v in query) newVectors.Add(v);
+
+            vectors = newVectors;
+
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Сортировка по Y
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSortByY_Click(object sender, EventArgs e)
+        {
+            List<Vector> newVectors = new List<Vector>();
+
+            IEnumerable<Vector> query;
+
+            if (asc) query = from v in vectors orderby v.y ascending select v;
+            else query = from v in vectors orderby v.y descending select v;
+
+            foreach (Vector v in query) newVectors.Add(v);
+
+            vectors = newVectors;
+
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Сортировка по Z
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSortByZ_Click(object sender, EventArgs e)
+        {
+            List<Vector> newVectors = new List<Vector>();
+
+            IEnumerable<Vector> query;
+
+            if (asc) query = from v in vectors orderby v.z ascending select v;
+            else query = from v in vectors orderby v.z descending select v;
+
+            foreach (Vector v in query) newVectors.Add(v);
+
+            vectors = newVectors;
+
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Удаление дубликатов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemoveDublicate_Click(object sender, EventArgs e)
+        {
+            List<Vector> newVectors = new List<Vector>();
+
+            IEnumerable<Vector> query = vectors.Distinct<Vector>();
+
+            foreach (Vector v in query) newVectors.Add(v);
+
+            vectors = newVectors;
+
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Изменение видимости поля поиска X
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxSearchX_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxSearchX.Enabled = ((CheckBox)sender).Checked;
+        }
+
+        /// <summary>
+        /// Изменение видимости поля поиска Y
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxSearchY_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxSearchY.Enabled = ((CheckBox)sender).Checked;
+        }
+
+        /// <summary>
+        /// Изменение видимости поля поиска Z
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxSearchZ_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxSearchZ.Enabled = ((CheckBox)sender).Checked;
+        }
+
+        /// <summary>
+        /// Поиск
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            if (textBoxSearchX.Enabled || textBoxSearchY.Enabled || textBoxSearchZ.Enabled)
+            {
+                List<Vector> result = new List<Vector>();
+
+                IEnumerable<Vector> query = from v in vectors select v;
+
+                if (textBoxSearchX.Enabled) query = query.Where(v => { return v.x == Convert.ToDouble(textBoxSearchX.Text); });
+                if (textBoxSearchY.Enabled) query = query.Where(v => { return v.y == Convert.ToDouble(textBoxSearchY.Text); });
+                if (textBoxSearchZ.Enabled) query = query.Where(v => { return v.z == Convert.ToDouble(textBoxSearchZ.Text); });
+
+                foreach (Vector v in query) result.Add(v);
+
+                UpdateListBox(result);
+            }
+            else
+            {
+                MessageBox.Show("Должно быть включено хотя бы одно поле.", "Ошибка");
+            }
+        }
+
+        /// <summary>
+        /// Очистка результатов поиска
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSearchResultClear_Click(object sender, EventArgs e)
+        {
+            UpdateListBox();
         }
     }
 }

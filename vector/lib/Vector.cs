@@ -65,9 +65,37 @@ namespace vector.lib
             return new CyrCoordsSystem(vector);
         }
 
+        /// <summary>
+        /// Преобразование в строковый тип данных
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return x + ";" + y + ";" + z; 
+        }
+
+        /// <summary>
+        /// Оператор сравнения
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            var item = obj as Vector;
+
+            if (item == null)
+                return false;
+
+            return this.x.Equals(item.x) && this.y.Equals(item.y) && this.z.Equals(item.z);
+        }
+
+        /// <summary>
+        /// Хэш-функция
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
         }
     }
 

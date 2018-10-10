@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.groupBoxVectorA = new System.Windows.Forms.GroupBox();
+            this.buttonVectorAGet = new System.Windows.Forms.Button();
+            this.buttonVectorAAdd = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBoxVectorACylF = new System.Windows.Forms.TextBox();
             this.textBoxVectorACylR = new System.Windows.Forms.TextBox();
@@ -56,8 +58,10 @@
             this.radioButtonDiff = new System.Windows.Forms.RadioButton();
             this.radioButtonMulti = new System.Windows.Forms.RadioButton();
             this.groupBoxOperation = new System.Windows.Forms.GroupBox();
+            this.textBoxNumber = new System.Windows.Forms.TextBox();
             this.buttonCalc = new System.Windows.Forms.Button();
             this.groupBoxVectorB = new System.Windows.Forms.GroupBox();
+            this.buttonVectorBGet = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBoxVectorBCylF = new System.Windows.Forms.TextBox();
             this.textBoxVectorBCylR = new System.Windows.Forms.TextBox();
@@ -65,6 +69,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.buttonVectorBAdd = new System.Windows.Forms.Button();
             this.textBoxVectorBZ = new System.Windows.Forms.TextBox();
             this.textBoxVectorBY = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -81,6 +86,7 @@
             this.textBoxVectorBX = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.buttonVectorResAdd = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.textBoxVectorResCylF = new System.Windows.Forms.TextBox();
             this.textBoxVectorResCylR = new System.Windows.Forms.TextBox();
@@ -103,15 +109,25 @@
             this.label29 = new System.Windows.Forms.Label();
             this.textBoxVectorResX = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.textBoxNumber = new System.Windows.Forms.TextBox();
-            this.buttonVectorAAdd = new System.Windows.Forms.Button();
-            this.buttonVectorAGet = new System.Windows.Forms.Button();
-            this.buttonVectorResAdd = new System.Windows.Forms.Button();
-            this.buttonVectorBGet = new System.Windows.Forms.Button();
-            this.buttonVectorBAdd = new System.Windows.Forms.Button();
             this.groupBoxVectors = new System.Windows.Forms.GroupBox();
             this.listBoxVectors = new System.Windows.Forms.ListBox();
-            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonSortAsc = new System.Windows.Forms.Button();
+            this.buttonSortDesc = new System.Windows.Forms.Button();
+            this.buttonDeleteSelected = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
+            this.buttonSortByX = new System.Windows.Forms.Button();
+            this.buttonSortByY = new System.Windows.Forms.Button();
+            this.buttonSortByZ = new System.Windows.Forms.Button();
+            this.buttonRemoveDublicate = new System.Windows.Forms.Button();
+            this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.checkBoxSearchX = new System.Windows.Forms.CheckBox();
+            this.textBoxSearchX = new System.Windows.Forms.TextBox();
+            this.textBoxSearchY = new System.Windows.Forms.TextBox();
+            this.checkBoxSearchY = new System.Windows.Forms.CheckBox();
+            this.textBoxSearchZ = new System.Windows.Forms.TextBox();
+            this.checkBoxSearchZ = new System.Windows.Forms.CheckBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.buttonSearchResultClear = new System.Windows.Forms.Button();
             this.groupBoxVectorA.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,6 +139,7 @@
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBoxVectors.SuspendLayout();
+            this.groupBoxSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxVectorA
@@ -145,6 +162,26 @@
             this.groupBoxVectorA.TabIndex = 0;
             this.groupBoxVectorA.TabStop = false;
             this.groupBoxVectorA.Text = "Вектор a";
+            // 
+            // buttonVectorAGet
+            // 
+            this.buttonVectorAGet.Location = new System.Drawing.Point(234, 47);
+            this.buttonVectorAGet.Name = "buttonVectorAGet";
+            this.buttonVectorAGet.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorAGet.TabIndex = 24;
+            this.buttonVectorAGet.Text = "←";
+            this.buttonVectorAGet.UseVisualStyleBackColor = true;
+            this.buttonVectorAGet.Click += new System.EventHandler(this.buttonVectorAGet_Click);
+            // 
+            // buttonVectorAAdd
+            // 
+            this.buttonVectorAAdd.Location = new System.Drawing.Point(234, 17);
+            this.buttonVectorAAdd.Name = "buttonVectorAAdd";
+            this.buttonVectorAAdd.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorAAdd.TabIndex = 22;
+            this.buttonVectorAAdd.Text = "→";
+            this.buttonVectorAAdd.UseVisualStyleBackColor = true;
+            this.buttonVectorAAdd.Click += new System.EventHandler(this.buttonVectorAAdd_Click);
             // 
             // groupBox3
             // 
@@ -406,6 +443,16 @@
             this.groupBoxOperation.TabStop = false;
             this.groupBoxOperation.Text = "Тип операции";
             // 
+            // textBoxNumber
+            // 
+            this.textBoxNumber.Enabled = false;
+            this.textBoxNumber.Location = new System.Drawing.Point(102, 70);
+            this.textBoxNumber.Name = "textBoxNumber";
+            this.textBoxNumber.Size = new System.Drawing.Size(154, 20);
+            this.textBoxNumber.TabIndex = 0;
+            this.textBoxNumber.Text = "0";
+            this.textBoxNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCoord_KeyPress);
+            // 
             // buttonCalc
             // 
             this.buttonCalc.Location = new System.Drawing.Point(11, 102);
@@ -430,12 +477,22 @@
             this.groupBoxVectorB.Controls.Add(this.label19);
             this.groupBoxVectorB.Controls.Add(this.textBoxVectorBX);
             this.groupBoxVectorB.Controls.Add(this.label20);
-            this.groupBoxVectorB.Location = new System.Drawing.Point(12, 210);
+            this.groupBoxVectorB.Location = new System.Drawing.Point(282, 12);
             this.groupBoxVectorB.Name = "groupBoxVectorB";
             this.groupBoxVectorB.Size = new System.Drawing.Size(264, 192);
             this.groupBoxVectorB.TabIndex = 20;
             this.groupBoxVectorB.TabStop = false;
             this.groupBoxVectorB.Text = "Вектор b";
+            // 
+            // buttonVectorBGet
+            // 
+            this.buttonVectorBGet.Location = new System.Drawing.Point(234, 47);
+            this.buttonVectorBGet.Name = "buttonVectorBGet";
+            this.buttonVectorBGet.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorBGet.TabIndex = 26;
+            this.buttonVectorBGet.Text = "←";
+            this.buttonVectorBGet.UseVisualStyleBackColor = true;
+            this.buttonVectorBGet.Click += new System.EventHandler(this.buttonVectorBGet_Click);
             // 
             // groupBox4
             // 
@@ -505,6 +562,16 @@
             this.label8.Size = new System.Drawing.Size(18, 13);
             this.label8.TabIndex = 13;
             this.label8.Text = "φ:";
+            // 
+            // buttonVectorBAdd
+            // 
+            this.buttonVectorBAdd.Location = new System.Drawing.Point(234, 17);
+            this.buttonVectorBAdd.Name = "buttonVectorBAdd";
+            this.buttonVectorBAdd.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorBAdd.TabIndex = 25;
+            this.buttonVectorBAdd.Text = "→";
+            this.buttonVectorBAdd.UseVisualStyleBackColor = true;
+            this.buttonVectorBAdd.Click += new System.EventHandler(this.buttonVectorBAdd_Click);
             // 
             // textBoxVectorBZ
             // 
@@ -663,12 +730,22 @@
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.textBoxVectorResX);
             this.groupBox6.Controls.Add(this.label30);
-            this.groupBox6.Location = new System.Drawing.Point(282, 12);
+            this.groupBox6.Location = new System.Drawing.Point(13, 210);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(263, 192);
             this.groupBox6.TabIndex = 21;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Результат";
+            // 
+            // buttonVectorResAdd
+            // 
+            this.buttonVectorResAdd.Location = new System.Drawing.Point(234, 17);
+            this.buttonVectorResAdd.Name = "buttonVectorResAdd";
+            this.buttonVectorResAdd.Size = new System.Drawing.Size(22, 22);
+            this.buttonVectorResAdd.TabIndex = 25;
+            this.buttonVectorResAdd.Text = "→";
+            this.buttonVectorResAdd.UseVisualStyleBackColor = true;
+            this.buttonVectorResAdd.Click += new System.EventHandler(this.buttonVectorResAdd_Click);
             // 
             // groupBox7
             // 
@@ -880,73 +957,20 @@
             this.label30.TabIndex = 0;
             this.label30.Text = "x:";
             // 
-            // textBoxNumber
-            // 
-            this.textBoxNumber.Enabled = false;
-            this.textBoxNumber.Location = new System.Drawing.Point(102, 70);
-            this.textBoxNumber.Name = "textBoxNumber";
-            this.textBoxNumber.Size = new System.Drawing.Size(154, 20);
-            this.textBoxNumber.TabIndex = 0;
-            this.textBoxNumber.Text = "0";
-            this.textBoxNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCoord_KeyPress);
-            // 
-            // buttonVectorAAdd
-            // 
-            this.buttonVectorAAdd.Location = new System.Drawing.Point(234, 17);
-            this.buttonVectorAAdd.Name = "buttonVectorAAdd";
-            this.buttonVectorAAdd.Size = new System.Drawing.Size(22, 22);
-            this.buttonVectorAAdd.TabIndex = 22;
-            this.buttonVectorAAdd.Text = "→";
-            this.buttonVectorAAdd.UseVisualStyleBackColor = true;
-            this.buttonVectorAAdd.Click += new System.EventHandler(this.buttonVectorAAdd_Click);
-            // 
-            // buttonVectorAGet
-            // 
-            this.buttonVectorAGet.Location = new System.Drawing.Point(234, 47);
-            this.buttonVectorAGet.Name = "buttonVectorAGet";
-            this.buttonVectorAGet.Size = new System.Drawing.Size(22, 22);
-            this.buttonVectorAGet.TabIndex = 24;
-            this.buttonVectorAGet.Text = "←";
-            this.buttonVectorAGet.UseVisualStyleBackColor = true;
-            this.buttonVectorAGet.Click += new System.EventHandler(this.buttonVectorAGet_Click);
-            // 
-            // buttonVectorResAdd
-            // 
-            this.buttonVectorResAdd.Location = new System.Drawing.Point(234, 17);
-            this.buttonVectorResAdd.Name = "buttonVectorResAdd";
-            this.buttonVectorResAdd.Size = new System.Drawing.Size(22, 22);
-            this.buttonVectorResAdd.TabIndex = 25;
-            this.buttonVectorResAdd.Text = "→";
-            this.buttonVectorResAdd.UseVisualStyleBackColor = true;
-            this.buttonVectorResAdd.Click += new System.EventHandler(this.buttonVectorResAdd_Click);
-            // 
-            // buttonVectorBGet
-            // 
-            this.buttonVectorBGet.Location = new System.Drawing.Point(234, 47);
-            this.buttonVectorBGet.Name = "buttonVectorBGet";
-            this.buttonVectorBGet.Size = new System.Drawing.Size(22, 22);
-            this.buttonVectorBGet.TabIndex = 26;
-            this.buttonVectorBGet.Text = "←";
-            this.buttonVectorBGet.UseVisualStyleBackColor = true;
-            this.buttonVectorBGet.Click += new System.EventHandler(this.buttonVectorBGet_Click);
-            // 
-            // buttonVectorBAdd
-            // 
-            this.buttonVectorBAdd.Location = new System.Drawing.Point(234, 17);
-            this.buttonVectorBAdd.Name = "buttonVectorBAdd";
-            this.buttonVectorBAdd.Size = new System.Drawing.Size(22, 22);
-            this.buttonVectorBAdd.TabIndex = 25;
-            this.buttonVectorBAdd.Text = "→";
-            this.buttonVectorBAdd.UseVisualStyleBackColor = true;
-            this.buttonVectorBAdd.Click += new System.EventHandler(this.buttonVectorBAdd_Click);
-            // 
             // groupBoxVectors
             // 
-            this.groupBoxVectors.Controls.Add(this.buttonDelete);
+            this.groupBoxVectors.Controls.Add(this.buttonRemoveDublicate);
+            this.groupBoxVectors.Controls.Add(this.buttonSortByZ);
+            this.groupBoxVectors.Controls.Add(this.buttonSortByY);
+            this.groupBoxVectors.Controls.Add(this.buttonSortByX);
+            this.groupBoxVectors.Controls.Add(this.buttonClear);
+            this.groupBoxVectors.Controls.Add(this.buttonDeleteSelected);
+            this.groupBoxVectors.Controls.Add(this.buttonSortDesc);
+            this.groupBoxVectors.Controls.Add(this.buttonSortAsc);
             this.groupBoxVectors.Controls.Add(this.listBoxVectors);
-            this.groupBoxVectors.Location = new System.Drawing.Point(551, 12);
+            this.groupBoxVectors.Location = new System.Drawing.Point(552, 12);
             this.groupBoxVectors.Name = "groupBoxVectors";
-            this.groupBoxVectors.Size = new System.Drawing.Size(221, 390);
+            this.groupBoxVectors.Size = new System.Drawing.Size(231, 332);
             this.groupBoxVectors.TabIndex = 22;
             this.groupBoxVectors.TabStop = false;
             this.groupBoxVectors.Text = "Список векторов";
@@ -956,24 +980,195 @@
             this.listBoxVectors.FormattingEnabled = true;
             this.listBoxVectors.Location = new System.Drawing.Point(6, 17);
             this.listBoxVectors.Name = "listBoxVectors";
-            this.listBoxVectors.Size = new System.Drawing.Size(209, 329);
+            this.listBoxVectors.Size = new System.Drawing.Size(218, 277);
             this.listBoxVectors.TabIndex = 0;
             // 
-            // buttonDelete
+            // buttonSortAsc
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(6, 357);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(209, 23);
-            this.buttonDelete.TabIndex = 1;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.buttonSortAsc.Location = new System.Drawing.Point(8, 301);
+            this.buttonSortAsc.Name = "buttonSortAsc";
+            this.buttonSortAsc.Size = new System.Drawing.Size(22, 22);
+            this.buttonSortAsc.TabIndex = 23;
+            this.buttonSortAsc.Text = "⯅";
+            this.buttonSortAsc.UseVisualStyleBackColor = true;
+            this.buttonSortAsc.Click += new System.EventHandler(this.buttonSortAsc_Click);
+            // 
+            // buttonSortDesc
+            // 
+            this.buttonSortDesc.Location = new System.Drawing.Point(36, 301);
+            this.buttonSortDesc.Name = "buttonSortDesc";
+            this.buttonSortDesc.Size = new System.Drawing.Size(22, 22);
+            this.buttonSortDesc.TabIndex = 24;
+            this.buttonSortDesc.Text = "⯆";
+            this.buttonSortDesc.UseVisualStyleBackColor = true;
+            this.buttonSortDesc.Click += new System.EventHandler(this.buttonSortDesc_Click);
+            // 
+            // buttonDeleteSelected
+            // 
+            this.buttonDeleteSelected.Location = new System.Drawing.Point(64, 301);
+            this.buttonDeleteSelected.Name = "buttonDeleteSelected";
+            this.buttonDeleteSelected.Size = new System.Drawing.Size(22, 22);
+            this.buttonDeleteSelected.TabIndex = 25;
+            this.buttonDeleteSelected.Text = "✗";
+            this.buttonDeleteSelected.UseVisualStyleBackColor = true;
+            this.buttonDeleteSelected.Click += new System.EventHandler(this.buttonDeleteSelected_Click);
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(92, 301);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(22, 22);
+            this.buttonClear.TabIndex = 26;
+            this.buttonClear.Text = "⭙";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
+            // buttonSortByX
+            // 
+            this.buttonSortByX.Location = new System.Drawing.Point(120, 301);
+            this.buttonSortByX.Name = "buttonSortByX";
+            this.buttonSortByX.Size = new System.Drawing.Size(22, 22);
+            this.buttonSortByX.TabIndex = 27;
+            this.buttonSortByX.Text = "X";
+            this.buttonSortByX.UseVisualStyleBackColor = true;
+            this.buttonSortByX.Click += new System.EventHandler(this.buttonSortByX_Click);
+            // 
+            // buttonSortByY
+            // 
+            this.buttonSortByY.Location = new System.Drawing.Point(148, 301);
+            this.buttonSortByY.Name = "buttonSortByY";
+            this.buttonSortByY.Size = new System.Drawing.Size(22, 22);
+            this.buttonSortByY.TabIndex = 28;
+            this.buttonSortByY.Text = "Y";
+            this.buttonSortByY.UseVisualStyleBackColor = true;
+            this.buttonSortByY.Click += new System.EventHandler(this.buttonSortByY_Click);
+            // 
+            // buttonSortByZ
+            // 
+            this.buttonSortByZ.Location = new System.Drawing.Point(176, 301);
+            this.buttonSortByZ.Name = "buttonSortByZ";
+            this.buttonSortByZ.Size = new System.Drawing.Size(22, 22);
+            this.buttonSortByZ.TabIndex = 29;
+            this.buttonSortByZ.Text = "Z";
+            this.buttonSortByZ.UseVisualStyleBackColor = true;
+            this.buttonSortByZ.Click += new System.EventHandler(this.buttonSortByZ_Click);
+            // 
+            // buttonRemoveDublicate
+            // 
+            this.buttonRemoveDublicate.Location = new System.Drawing.Point(204, 301);
+            this.buttonRemoveDublicate.Name = "buttonRemoveDublicate";
+            this.buttonRemoveDublicate.Size = new System.Drawing.Size(22, 22);
+            this.buttonRemoveDublicate.TabIndex = 30;
+            this.buttonRemoveDublicate.Text = "⥮";
+            this.buttonRemoveDublicate.UseVisualStyleBackColor = true;
+            this.buttonRemoveDublicate.Click += new System.EventHandler(this.buttonRemoveDublicate_Click);
+            // 
+            // groupBoxSearch
+            // 
+            this.groupBoxSearch.Controls.Add(this.buttonSearchResultClear);
+            this.groupBoxSearch.Controls.Add(this.buttonSearch);
+            this.groupBoxSearch.Controls.Add(this.textBoxSearchZ);
+            this.groupBoxSearch.Controls.Add(this.checkBoxSearchZ);
+            this.groupBoxSearch.Controls.Add(this.textBoxSearchY);
+            this.groupBoxSearch.Controls.Add(this.checkBoxSearchY);
+            this.groupBoxSearch.Controls.Add(this.textBoxSearchX);
+            this.groupBoxSearch.Controls.Add(this.checkBoxSearchX);
+            this.groupBoxSearch.Location = new System.Drawing.Point(282, 350);
+            this.groupBoxSearch.Name = "groupBoxSearch";
+            this.groupBoxSearch.Size = new System.Drawing.Size(501, 52);
+            this.groupBoxSearch.TabIndex = 23;
+            this.groupBoxSearch.TabStop = false;
+            this.groupBoxSearch.Text = "Поиск";
+            // 
+            // checkBoxSearchX
+            // 
+            this.checkBoxSearchX.AutoSize = true;
+            this.checkBoxSearchX.Location = new System.Drawing.Point(14, 25);
+            this.checkBoxSearchX.Name = "checkBoxSearchX";
+            this.checkBoxSearchX.Size = new System.Drawing.Size(31, 17);
+            this.checkBoxSearchX.TabIndex = 0;
+            this.checkBoxSearchX.Text = "x";
+            this.checkBoxSearchX.UseVisualStyleBackColor = true;
+            this.checkBoxSearchX.CheckedChanged += new System.EventHandler(this.checkBoxSearchX_CheckedChanged);
+            // 
+            // textBoxSearchX
+            // 
+            this.textBoxSearchX.Enabled = false;
+            this.textBoxSearchX.Location = new System.Drawing.Point(48, 23);
+            this.textBoxSearchX.Name = "textBoxSearchX";
+            this.textBoxSearchX.Size = new System.Drawing.Size(54, 20);
+            this.textBoxSearchX.TabIndex = 1;
+            this.textBoxSearchX.Text = "0";
+            this.textBoxSearchX.TextChanged += new System.EventHandler(this.textBoxVector_TextChanged);
+            // 
+            // textBoxSearchY
+            // 
+            this.textBoxSearchY.Enabled = false;
+            this.textBoxSearchY.Location = new System.Drawing.Point(145, 23);
+            this.textBoxSearchY.Name = "textBoxSearchY";
+            this.textBoxSearchY.Size = new System.Drawing.Size(54, 20);
+            this.textBoxSearchY.TabIndex = 3;
+            this.textBoxSearchY.Text = "0";
+            this.textBoxSearchY.TextChanged += new System.EventHandler(this.textBoxVector_TextChanged);
+            // 
+            // checkBoxSearchY
+            // 
+            this.checkBoxSearchY.AutoSize = true;
+            this.checkBoxSearchY.Location = new System.Drawing.Point(111, 25);
+            this.checkBoxSearchY.Name = "checkBoxSearchY";
+            this.checkBoxSearchY.Size = new System.Drawing.Size(31, 17);
+            this.checkBoxSearchY.TabIndex = 2;
+            this.checkBoxSearchY.Text = "y";
+            this.checkBoxSearchY.UseVisualStyleBackColor = true;
+            this.checkBoxSearchY.CheckedChanged += new System.EventHandler(this.checkBoxSearchY_CheckedChanged);
+            // 
+            // textBoxSearchZ
+            // 
+            this.textBoxSearchZ.Enabled = false;
+            this.textBoxSearchZ.Location = new System.Drawing.Point(242, 23);
+            this.textBoxSearchZ.Name = "textBoxSearchZ";
+            this.textBoxSearchZ.Size = new System.Drawing.Size(54, 20);
+            this.textBoxSearchZ.TabIndex = 5;
+            this.textBoxSearchZ.Text = "0";
+            this.textBoxSearchZ.TextChanged += new System.EventHandler(this.textBoxVector_TextChanged);
+            // 
+            // checkBoxSearchZ
+            // 
+            this.checkBoxSearchZ.AutoSize = true;
+            this.checkBoxSearchZ.Location = new System.Drawing.Point(208, 25);
+            this.checkBoxSearchZ.Name = "checkBoxSearchZ";
+            this.checkBoxSearchZ.Size = new System.Drawing.Size(31, 17);
+            this.checkBoxSearchZ.TabIndex = 4;
+            this.checkBoxSearchZ.Text = "z";
+            this.checkBoxSearchZ.UseVisualStyleBackColor = true;
+            this.checkBoxSearchZ.CheckedChanged += new System.EventHandler(this.checkBoxSearchZ_CheckedChanged);
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(303, 21);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(95, 23);
+            this.buttonSearch.TabIndex = 6;
+            this.buttonSearch.Text = "Поиск";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // buttonSearchResultClear
+            // 
+            this.buttonSearchResultClear.Location = new System.Drawing.Point(399, 21);
+            this.buttonSearchResultClear.Name = "buttonSearchResultClear";
+            this.buttonSearchResultClear.Size = new System.Drawing.Size(95, 23);
+            this.buttonSearchResultClear.TabIndex = 7;
+            this.buttonSearchResultClear.Text = "Очисть";
+            this.buttonSearchResultClear.UseVisualStyleBackColor = true;
+            this.buttonSearchResultClear.Click += new System.EventHandler(this.buttonSearchResultClear_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 413);
+            this.ClientSize = new System.Drawing.Size(792, 412);
+            this.Controls.Add(this.groupBoxSearch);
             this.Controls.Add(this.groupBoxVectors);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBoxOperation);
@@ -1003,6 +1198,8 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBoxVectors.ResumeLayout(false);
+            this.groupBoxSearch.ResumeLayout(false);
+            this.groupBoxSearch.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1091,7 +1288,23 @@
         private System.Windows.Forms.Button buttonVectorResAdd;
         private System.Windows.Forms.GroupBox groupBoxVectors;
         private System.Windows.Forms.ListBox listBoxVectors;
-        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonSortDesc;
+        private System.Windows.Forms.Button buttonSortAsc;
+        private System.Windows.Forms.Button buttonRemoveDublicate;
+        private System.Windows.Forms.Button buttonSortByZ;
+        private System.Windows.Forms.Button buttonSortByY;
+        private System.Windows.Forms.Button buttonSortByX;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonDeleteSelected;
+        private System.Windows.Forms.GroupBox groupBoxSearch;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.TextBox textBoxSearchZ;
+        private System.Windows.Forms.CheckBox checkBoxSearchZ;
+        private System.Windows.Forms.TextBox textBoxSearchY;
+        private System.Windows.Forms.CheckBox checkBoxSearchY;
+        private System.Windows.Forms.TextBox textBoxSearchX;
+        private System.Windows.Forms.CheckBox checkBoxSearchX;
+        private System.Windows.Forms.Button buttonSearchResultClear;
     }
 }
 
