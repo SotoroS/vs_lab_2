@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="lib\CyrCoordsSystem.cs" />
+    <Compile Include="lib\CylCoordsSystem.cs" />
     <Compile Include="lib\DecartCoordsSystem.cs" />
     <Compile Include="lib\Vector.cs" />
     <Compile Include="Main.cs">

@@ -60,9 +60,9 @@ namespace vector.lib
         }
 
         // Проекция вектора в цилиндрической системе координат
-        public static implicit operator CyrCoordsSystem(Vector vector)
+        public static implicit operator CylCoordsSystem(Vector vector)
         {
-            return new CyrCoordsSystem(vector);
+            return new CylCoordsSystem(vector);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace vector.lib
         /// <returns></returns>
         public override string ToString()
         {
-            return x + ";" + y + ";" + z; 
+            return x.ToString("F2") + "; " + y.ToString("F2") + "; " + z.ToString("F2") + "; " + module.ToString("F2") + "; " + ((CylCoordsSystem)this).f.ToString("F2"); 
         }
 
         /// <summary>

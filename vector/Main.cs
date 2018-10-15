@@ -9,6 +9,15 @@ namespace vector
     public partial class Main : Form
     {
         /// <summary>
+        /// Вектора
+        /// </summary>
+        Vector a = new Vector();
+        Vector b = new Vector();
+        Vector r = new Vector();
+
+        double number;
+
+        /// <summary>
         /// Список векторов
         /// </summary>
         private List<Vector> vectors = new List<Vector>();
@@ -24,17 +33,67 @@ namespace vector
         }
 
         /// <summary>
-        /// Проверка введенных значений в поля формы
+        /// Проверка на пустату текстого поля
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxCoord_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBoxVector_TextChanged(object sender, EventArgs e)
         {
-            char number = e.KeyChar;
 
-            if (!Char.IsDigit(number) && number != 8 && number != 44) // цифры, клавиша BackSpace и запятая
             {
-                e.Handled = true;
+                // Преобразование текстовых полей в вектора
+                if (!(double.TryParse(tbvax.Text, out a.x)
+                    && double.TryParse(tbvay.Text, out a.y)
+                    && double.TryParse(tbvaz.Text, out a.z)
+                    && double.TryParse(tbvbx.Text, out b.x)
+                    && double.TryParse(tbvby.Text, out b.y)
+                    && double.TryParse(tbvbz.Text, out b.z)
+                    && double.TryParse(tbvrx.Text, out r.x)
+                    && double.TryParse(tbvrx.Text, out r.y)
+                    && double.TryParse(tbvrx.Text, out r.z)
+                    && double.TryParse(tbn.Text, out number)))
+                {
+                    return;
+                }
+
+                if (radioButtonAdd.Checked) r = a + b;
+                else if (radioButtonDiff.Checked) r = a - b;
+                else if (radioButtonMulti.Checked) r = a * number;
+
+                tbvrx.Text = r.x.ToString("N2");
+                tbvry.Text = r.y.ToString("N2");
+                tbvrz.Text = r.z.ToString("N2");
+
+                // Вычисление модулей
+                tbvam.Text = a.module.ToString("N2");
+                tbvbm.Text = b.module.ToString("N2");
+                tbvrm.Text = r.module.ToString("N2");
+
+                // Проекция в декартовую системц координат
+                tbvai.Text = a.x.ToString("N2");
+                tbvaj.Text = a.y.ToString("N2");
+                tbvak.Text = a.z.ToString("N2");
+
+                tbvbi.Text = b.x.ToString("N2");
+                tbvbj.Text = b.y.ToString("N2");
+                tbvbk.Text = b.z.ToString("N2");
+
+                tbvri.Text = r.x.ToString("N2");
+                tbvrj.Text = r.y.ToString("N2");
+                tbvrk.Text = r.z.ToString("N2");
+
+                // Проекция в цилиндрическую систему координат
+                tbvacr.Text = ((CylCoordsSystem)a).r.ToString("N2");
+                tbvacf.Text = ((CylCoordsSystem)a).f.ToString("N2");
+                tbvacz.Text = ((CylCoordsSystem)a).z.ToString("N2");
+
+                tbvbcr.Text = ((CylCoordsSystem)b).r.ToString("N2");
+                tbvbcf.Text = ((CylCoordsSystem)b).f.ToString("N2");
+                tbvbcz.Text = ((CylCoordsSystem)b).z.ToString("N2");
+
+                tbvrcr.Text = ((CylCoordsSystem)r).r.ToString("N2");
+                tbvrcf.Text = ((CylCoordsSystem)r).f.ToString("N2");
+                tbvrcz.Text = ((CylCoordsSystem)r).z.ToString("N2");
             }
         }
 
@@ -48,196 +107,12 @@ namespace vector
             if (((RadioButton)sender).Checked)
             {
                 groupBoxVectorB.Enabled = false;
-                textBoxNumber.Enabled = true;
+                tbn.Enabled = true;
             }
             else
             {
                 groupBoxVectorB.Enabled = true;
-                textBoxNumber.Enabled = false;
-            }
-        }
-
-        /// <summary>
-        /// Dвычисления
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCalc_Click(object sender, EventArgs e)
-        {
-
-            if (radioButtonAdd.Checked) // Сложение
-            {
-                Vector a = new Vector(
-                    Convert.ToDouble(textBoxVectorAX.Text),
-                    Convert.ToDouble(textBoxVectorAY.Text),
-                    Convert.ToDouble(textBoxVectorAZ.Text)
-                );
-
-                Vector b = new Vector(
-                    Convert.ToDouble(textBoxVectorBX.Text),
-                    Convert.ToDouble(textBoxVectorBY.Text),
-                    Convert.ToDouble(textBoxVectorBZ.Text)
-                );
-
-                Vector result = a + b;
-
-                textBoxVectorResX.Text = result.x.ToString("N2");
-                textBoxVectorResY.Text = result.y.ToString("N2");
-                textBoxVectorResZ.Text = result.z.ToString("N2");
-
-                // Вычисление модулей
-                textBoxVectorAModule.Text = a.module.ToString("N2");
-                textBoxVectorBModule.Text = b.module.ToString("N2");
-                textBoxVectorResModule.Text = result.module.ToString("N2");
-
-                // Проекция в декартовую систему координат
-                DecartCoordsSystem decartA = new DecartCoordsSystem(a);
-                DecartCoordsSystem decartB = new DecartCoordsSystem(b);
-                DecartCoordsSystem decartRes = new DecartCoordsSystem(result);
-
-                textBoxVectorAI.Text = decartA.i.ToString("N2");
-                textBoxVectorAJ.Text = decartA.j.ToString("N2");
-                textBoxVectorAK.Text = decartA.k.ToString("N2");
-
-                textBoxVectorBI.Text = decartB.i.ToString("N2");
-                textBoxVectorBJ.Text = decartB.j.ToString("N2");
-                textBoxVectorBK.Text = decartB.k.ToString("N2");
-
-                textBoxVectorResI.Text = decartRes.i.ToString("N2");
-                textBoxVectorResJ.Text = decartRes.j.ToString("N2");
-                textBoxVectorResK.Text = decartRes.k.ToString("N2");
-
-                // Проекция в цилиндрическую систему координат
-                CyrCoordsSystem cylA = new CyrCoordsSystem(a);
-                CyrCoordsSystem cylB = new CyrCoordsSystem(b);
-                CyrCoordsSystem cylRes = new CyrCoordsSystem(result);
-
-                textBoxVectorACylR.Text = cylA.r.ToString("N2");
-                textBoxVectorACylF.Text = cylA.f.ToString("N2");
-                textBoxVectorACylZ.Text = cylA.z.ToString("N2");
-
-                textBoxVectorBCylR.Text = cylB.r.ToString("N2");
-                textBoxVectorBCylF.Text = cylB.f.ToString("N2");
-                textBoxVectorBCylZ.Text = cylB.z.ToString("N2");
-
-                textBoxVectorResCylR.Text = cylRes.r.ToString("N2");
-                textBoxVectorResCylF.Text = cylRes.f.ToString("N2");
-                textBoxVectorResCylZ.Text = cylRes.z.ToString("N2");
-            }
-            else if (radioButtonDiff.Checked)   // Вычитание
-            {
-                Vector a = new Vector(
-                    Convert.ToDouble(textBoxVectorAX.Text),
-                    Convert.ToDouble(textBoxVectorAY.Text),
-                    Convert.ToDouble(textBoxVectorAZ.Text)
-                );
-
-                Vector b = new Vector(
-                    Convert.ToDouble(textBoxVectorBX.Text),
-                    Convert.ToDouble(textBoxVectorBY.Text),
-                    Convert.ToDouble(textBoxVectorBZ.Text)
-                );
-
-                Vector result = a - b;
-
-                textBoxVectorResX.Text = result.x.ToString("N2");
-                textBoxVectorResY.Text = result.y.ToString("N2");
-                textBoxVectorResZ.Text = result.z.ToString("N2");
-
-                // Вычисление модулей
-                textBoxVectorAModule.Text = a.module.ToString("N2");
-                textBoxVectorBModule.Text = b.module.ToString("N2");
-                textBoxVectorResModule.Text = result.module.ToString("N2");
-
-                // Проекция в декартовую систему координат
-                DecartCoordsSystem decartA = new DecartCoordsSystem(a);
-                DecartCoordsSystem decartB = new DecartCoordsSystem(b);
-                DecartCoordsSystem decartRes = new DecartCoordsSystem(result);
-
-                textBoxVectorAI.Text = decartA.i.ToString("N2");
-                textBoxVectorAJ.Text = decartA.j.ToString("N2");
-                textBoxVectorAK.Text = decartA.k.ToString("N2");
-
-                textBoxVectorBI.Text = decartB.i.ToString("N2");
-                textBoxVectorBJ.Text = decartB.j.ToString("N2");
-                textBoxVectorBK.Text = decartB.k.ToString("N2");
-
-                textBoxVectorResI.Text = decartRes.i.ToString("N2");
-                textBoxVectorResJ.Text = decartRes.j.ToString("N2");
-                textBoxVectorResK.Text = decartRes.k.ToString("N2");
-
-                // Проекция в цилиндрическую систему координат
-                CyrCoordsSystem cylA = new CyrCoordsSystem(a);
-                CyrCoordsSystem cylB = new CyrCoordsSystem(b);
-                CyrCoordsSystem cylRes = new CyrCoordsSystem(result);
-
-                textBoxVectorACylR.Text = cylA.r.ToString("N2");
-                textBoxVectorACylF.Text = cylA.f.ToString("N2");
-                textBoxVectorACylZ.Text = cylA.z.ToString("N2");
-
-                textBoxVectorBCylR.Text = cylB.r.ToString("N2");
-                textBoxVectorBCylF.Text = cylB.f.ToString("N2");
-                textBoxVectorBCylZ.Text = cylB.z.ToString("N2");
-
-                textBoxVectorResCylR.Text = cylRes.r.ToString("N2");
-                textBoxVectorResCylF.Text = cylRes.f.ToString("N2");
-                textBoxVectorResCylZ.Text = cylRes.z.ToString("N2");
-            }
-            else if (radioButtonMulti.Checked)  // Умножение
-            {
-                Vector a = new Vector(
-                    Convert.ToDouble(textBoxVectorAX.Text),
-                    Convert.ToDouble(textBoxVectorAY.Text),
-                    Convert.ToDouble(textBoxVectorAZ.Text)
-                );
-
-                Double b = Convert.ToDouble(textBoxNumber.Text);
-
-                Vector result = a * b;
-
-                textBoxVectorResX.Text = result.x.ToString("N2");
-                textBoxVectorResY.Text = result.y.ToString("N2");
-                textBoxVectorResZ.Text = result.z.ToString("N2");
-
-                // Вычисление модулей
-                textBoxVectorAModule.Text = a.module.ToString("N2");
-                textBoxVectorResModule.Text = result.module.ToString("N2");
-
-                // Проекция в декартовую систему координат
-                DecartCoordsSystem decartA = new DecartCoordsSystem(a);
-                DecartCoordsSystem decartRes = new DecartCoordsSystem(result);
-
-                textBoxVectorAI.Text = decartA.i.ToString("N2");
-                textBoxVectorAJ.Text = decartA.j.ToString("N2");
-                textBoxVectorAK.Text = decartA.k.ToString("N2");
-
-                textBoxVectorResI.Text = decartRes.i.ToString("N2");
-                textBoxVectorResJ.Text = decartRes.j.ToString("N2");
-                textBoxVectorResK.Text = decartRes.k.ToString("N2");
-
-                // Проекция в цилиндрическую систему координат
-                CyrCoordsSystem cylA = new CyrCoordsSystem(a);
-                CyrCoordsSystem cylRes = new CyrCoordsSystem(result);
-
-                textBoxVectorACylR.Text = cylA.r.ToString("N2");
-                textBoxVectorACylF.Text = cylA.f.ToString("N2");
-                textBoxVectorACylZ.Text = cylA.z.ToString("N2");
-
-                textBoxVectorResCylR.Text = cylRes.r.ToString("N2");
-                textBoxVectorResCylF.Text = cylRes.f.ToString("N2");
-                textBoxVectorResCylZ.Text = cylRes.z.ToString("N2");
-            }
-        }
-
-        // Проверка на пустату текстого поля
-        private void textBoxVector_TextChanged(object sender, EventArgs e)
-        {
-            TextBox textBox = ((TextBox)sender);
-
-            // Проверка на пустату строки
-            if (textBox.Text == String.Empty)
-            {
-                textBox.Text = "0";
+                tbn.Enabled = false;
             }
         }
 
@@ -248,7 +123,7 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorAAdd_Click(object sender, EventArgs e)
         {
-            vectors.Add(new Vector(Convert.ToDouble(textBoxVectorAX.Text), Convert.ToDouble(textBoxVectorAY.Text), Convert.ToDouble(textBoxVectorAZ.Text)));
+            vectors.Add(new Vector(Convert.ToDouble(tbvax.Text), Convert.ToDouble(tbvay.Text), Convert.ToDouble(tbvaz.Text)));
             UpdateListBox();
         }
 
@@ -259,7 +134,7 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorBAdd_Click(object sender, EventArgs e)
         {
-            vectors.Add(new Vector(Convert.ToDouble(textBoxVectorBX.Text), Convert.ToDouble(textBoxVectorBY.Text), Convert.ToDouble(textBoxVectorBZ.Text)));
+            vectors.Add(new Vector(Convert.ToDouble(tbvbx.Text), Convert.ToDouble(tbvby.Text), Convert.ToDouble(tbvbz.Text)));
             UpdateListBox();
         }
 
@@ -270,7 +145,7 @@ namespace vector
         /// <param name="e"></param>
         private void buttonVectorResAdd_Click(object sender, EventArgs e)
         {
-            vectors.Add(new Vector(Convert.ToDouble(textBoxVectorResX.Text), Convert.ToDouble(textBoxVectorResY.Text), Convert.ToDouble(textBoxVectorResZ.Text)));
+            vectors.Add(new Vector(Convert.ToDouble(tbvrx.Text), Convert.ToDouble(tbvry.Text), Convert.ToDouble(tbvrz.Text)));
             UpdateListBox();
         }
 
@@ -285,9 +160,9 @@ namespace vector
 
             string[] value = listBoxVectors.GetItemText(listBoxVectors.SelectedItem).Split(';');
 
-            textBoxVectorAX.Text = value[0];
-            textBoxVectorAY.Text = value[1];
-            textBoxVectorAZ.Text = value[2];
+            tbvax.Text = value[0].Trim();
+            tbvay.Text = value[1].Trim();
+            tbvaz.Text = value[2].Trim();
         }
 
         /// <summary>
@@ -301,9 +176,9 @@ namespace vector
 
             string[] value = listBoxVectors.GetItemText(listBoxVectors.SelectedItem).Split(';');
 
-            textBoxVectorBX.Text = value[0];
-            textBoxVectorBY.Text = value[1];
-            textBoxVectorBZ.Text = value[2];
+            tbvbx.Text = value[0].Trim();
+            tbvby.Text = value[1].Trim();
+            tbvbz.Text = value[2].Trim();
         }
 
         /// <summary>
@@ -316,20 +191,27 @@ namespace vector
             listBoxVectors.Items.Remove(listBoxVectors.SelectedItem);
         }
 
+        /// <summary>
+        /// Обновление списка векторов
+        /// </summary>
         private void UpdateListBox()
         {
             listBoxVectors.Items.Clear();
 
             foreach (Vector v in vectors)
-                listBoxVectors.Items.Add(v.x + ";" + v.y + ";" + v.z);
+                listBoxVectors.Items.Add(v.ToString());
         }
 
+        /// <summary>
+        /// Обновление списка векторов
+        /// </summary>
+        /// <param name="list"></param>
         private void UpdateListBox(List<Vector> list)
         {
             listBoxVectors.Items.Clear();
 
             foreach (Vector v in list)
-                listBoxVectors.Items.Add(v.x + ";" + v.y + ";" + v.z);
+                listBoxVectors.Items.Add(v.ToString());
         }
 
         /// <summary>
@@ -516,7 +398,7 @@ namespace vector
         {
             if (textBoxSearchX.Enabled || textBoxSearchY.Enabled || textBoxSearchZ.Enabled)
             {
-                List<Vector> result = new List<Vector>();
+                List<Vector> r = new List<Vector>();
 
                 IEnumerable<Vector> query = from v in vectors select v;
 
@@ -524,9 +406,9 @@ namespace vector
                 if (textBoxSearchY.Enabled) query = query.Where(v => { return v.y == Convert.ToDouble(textBoxSearchY.Text); });
                 if (textBoxSearchZ.Enabled) query = query.Where(v => { return v.z == Convert.ToDouble(textBoxSearchZ.Text); });
 
-                foreach (Vector v in query) result.Add(v);
+                foreach (Vector v in query) r.Add(v);
 
-                UpdateListBox(result);
+                UpdateListBox(r);
             }
             else
             {
@@ -539,9 +421,28 @@ namespace vector
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonSearchResultClear_Click(object sender, EventArgs e)
+        private void buttonSearchrClear_Click(object sender, EventArgs e)
         {
             UpdateListBox();
+        }
+
+        /// <summary>
+        /// Поиск спектра векторов в заданных значения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSpectorSearch_Click(object sender, EventArgs e)
+        {
+            List<Vector> list = new List<Vector>();
+
+            IEnumerable<Vector> query = from v in vectors
+                                        where v.module >= Convert.ToDouble(textBoxR1.Text) && v.module <= Convert.ToDouble(textBoxR2.Text)
+                                            && ((CylCoordsSystem)v).f >= Convert.ToDouble(textBoxF1.Text) && ((CylCoordsSystem)v).f <= Convert.ToDouble(textBoxF2.Text)
+                                        select v;
+
+            foreach (Vector v in query) list.Add(v);
+
+            UpdateListBox(list);
         }
     }
 }
