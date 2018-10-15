@@ -128,7 +128,7 @@
             this.textBoxSearchX = new System.Windows.Forms.TextBox();
             this.checkBoxSearchX = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonClearSearchResult = new System.Windows.Forms.Button();
             this.buttonSpectorSearch = new System.Windows.Forms.Button();
             this.textBoxF2 = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
@@ -1082,6 +1082,7 @@
             this.buttonSearchResultClear.TabIndex = 7;
             this.buttonSearchResultClear.Text = "Очисть";
             this.buttonSearchResultClear.UseVisualStyleBackColor = true;
+            this.buttonSearchResultClear.Click += new System.EventHandler(this.buttonSearchResultClear_Click);
             // 
             // buttonSearch
             // 
@@ -1158,7 +1159,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.buttonClearSearchResult);
             this.groupBox2.Controls.Add(this.buttonSpectorSearch);
             this.groupBox2.Controls.Add(this.textBoxF2);
             this.groupBox2.Controls.Add(this.label33);
@@ -1175,14 +1176,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поиск векторов";
             // 
-            // button2
+            // buttonClearSearchResult
             // 
-            this.button2.Location = new System.Drawing.Point(383, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 46);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Очистить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonClearSearchResult.Location = new System.Drawing.Point(383, 19);
+            this.buttonClearSearchResult.Name = "buttonClearSearchResult";
+            this.buttonClearSearchResult.Size = new System.Drawing.Size(94, 46);
+            this.buttonClearSearchResult.TabIndex = 10;
+            this.buttonClearSearchResult.Text = "Очистить";
+            this.buttonClearSearchResult.UseVisualStyleBackColor = true;
+            this.buttonClearSearchResult.Click += new System.EventHandler(this.buttonSearchrClear_Click);
             // 
             // buttonSpectorSearch
             // 
@@ -1407,7 +1409,7 @@
         private System.Windows.Forms.CheckBox checkBoxSearchX;
         private System.Windows.Forms.Button buttonSearchResultClear;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonClearSearchResult;
         private System.Windows.Forms.Button buttonSpectorSearch;
         private System.Windows.Forms.TextBox textBoxF2;
         private System.Windows.Forms.Label label33;

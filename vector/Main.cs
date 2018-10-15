@@ -436,13 +436,23 @@ namespace vector
             List<Vector> list = new List<Vector>();
 
             IEnumerable<Vector> query = from v in vectors
-                                        where v.module >= Convert.ToDouble(textBoxR1.Text) && v.module <= Convert.ToDouble(textBoxR2.Text)
-                                            && ((CylCoordsSystem)v).f >= Convert.ToDouble(textBoxF1.Text) && ((CylCoordsSystem)v).f <= Convert.ToDouble(textBoxF2.Text)
+                                        where Math.Round(v.module, 2) >= Math.Round(Convert.ToDouble(textBoxR1.Text), 2) && Math.Round(v.module, 2) <= Math.Round(Convert.ToDouble(textBoxR2.Text))
+                                            && Math.Round(((CylCoordsSystem)v).f, 2) >= Math.Round(Convert.ToDouble(textBoxF1.Text), 2) && Math.Round(((CylCoordsSystem)v).f, 2) <= Math.Round(Convert.ToDouble(textBoxF2.Text), 2)
                                         select v;
 
             foreach (Vector v in query) list.Add(v);
 
             UpdateListBox(list);
+        }
+
+        /// <summary>
+        /// Очистка результатов запроса
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSearchResultClear_Click(object sender, EventArgs e)
+        {
+            UpdateListBox();
         }
     }
 }
